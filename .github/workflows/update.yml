@@ -2,16 +2,18 @@ name: Daily positive-news refresh
 
 on:
   schedule:
-    - cron:  '15 8 * * *'     # every day at 08:15 UTC
-  workflow_dispatch:          # allow manual run
+    - cron: '15 8 * * *'        # every day 08:15 UTC
+  workflow_dispatch:            # manual trigger button
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     env:
-      NETLIFY_HOOK: ${{ secrets.NETLIFY_BUILD_HOOK }}   # add this secret in repo Settings → Secrets
+      NETLIFY_HOOK: ${{ secrets.NETLIFY_BUILD_HOOK }}
+
     steps:
-      - name: Clone repo
+      - name: Checkout repo
         uses: actions/checkout@v4
 
       - name: Setup Node
@@ -20,22 +22,27 @@ jobs:
           node-version: 18
           cache: 'npm'
 
-      - name: Install deps
+      - name: Install dependencies
         run: npm ci
 
-      - name: Run feed fetcher
+      - name: Fetch positive news
         run: node fetch-feeds.js
 
       - name: Commit new posts (if any)
         run: |
-          git config user.name  "GitHub Actions"
           git config user.email "actions@github.com"
+          git config user.name  "GitHub Actions"
           git add src/posts
-          git diff --cached --quiet || git commit -m "chore: daily good-news update"
-      - name: Push
+          if git diff --cached --quiet; then
+            echo "No new posts – skipping commit."
+          else
+            git commit -m "chore: daily good-news update"
+          fi
+
+      - name: Push changes
         if: success()
         run: git push
 
-      - name: Ping Netlify build hook
+      - name: Trigger Netlify build
         if: env.NETLIFY_HOOK != ''
         run: curl -s -X POST -d '{}' "$NETLIFY_HOOK"
