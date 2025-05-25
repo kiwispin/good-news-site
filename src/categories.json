@@ -1,0 +1,11 @@
+{
+  "pagination": {
+    "data": ["Environment","Health","Innovation","Human Kindness"]
+  },
+  "permalink": "{{ pagination.item | slug }}/index.html",
+  "eleventyComputed": {
+    "title": "{{ pagination.item }}",
+    "category": "{{ pagination.item }}"
+  },
+  "layout": "category.njk"
+}
