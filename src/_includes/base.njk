@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>
+      {% if title %}{{ title }} – {% endif %}Good-News Site
+    </title>
+    <link rel="stylesheet" href="/assets/tailwind.css" />
+  </head>
+  <body class="max-w-4xl mx-auto p-6">
+    <header class="mb-8 flex items-center justify-between">
+      <h1 class="text-3xl font-bold">
+        <a href="/">Good-News Site</a>
+      </h1>
+      <nav class="space-x-4 text-blue-700 underline">
+        <a href="/">Home</a>
+        <a href="/categories/">Categories</a>
+      </nav>
+    </header>
+    {% block content %}{% endblock %}
+    <footer class="mt-12 text-xs text-gray-500">
+      Updated daily via automation
+    </footer>
+  </body>
+</html>
