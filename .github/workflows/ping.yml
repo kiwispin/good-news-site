@@ -1,0 +1,7 @@
+name: ping
+on: push
+jobs:
+  t:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "🎉 GitHub Actions are alive"
