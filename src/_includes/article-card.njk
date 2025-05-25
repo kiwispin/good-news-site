@@ -1,0 +1,14 @@
+<article class="border rounded-xl overflow-hidden shadow hover:shadow-md transition">
+  <a href="{{ post.data.externalLink }}" target="_blank" rel="noopener">
+    {% if post.data.image %}
+      <img class="w-full h-40 object-cover" src="{{ post.data.image }}" alt="" />
+    {% endif %}
+    <div class="p-4 space-y-2">
+      <h2 class="font-semibold">{{ post.data.title }}</h2>
+      <p class="text-sm text-gray-600">{{ post.data.excerpt }}</p>
+      <span class="inline-block mt-1 text-xs text-green-700">
+        {{ post.data.category }}
+      </span>
+    </div>
+  </a>
+</article>
