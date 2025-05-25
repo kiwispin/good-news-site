@@ -1,0 +1,41 @@
+name: Daily positive-news refresh
+
+on:
+  schedule:
+    - cron:  '15 8 * * *'     # every day at 08:15 UTC
+  workflow_dispatch:          # allow manual run
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      NETLIFY_HOOK: ${{ secrets.NETLIFY_BUILD_HOOK }}   # add this secret in repo Settings → Secrets
+    steps:
+      - name: Clone repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: 'npm'
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Run feed fetcher
+        run: node fetch-feeds.js
+
+      - name: Commit new posts (if any)
+        run: |
+          git config user.name  "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add src/posts
+          git diff --cached --quiet || git commit -m "chore: daily good-news update"
+      - name: Push
+        if: success()
+        run: git push
+
+      - name: Ping Netlify build hook
+        if: env.NETLIFY_HOOK != ''
+        run: curl -s -X POST -d '{}' "$NETLIFY_HOOK"

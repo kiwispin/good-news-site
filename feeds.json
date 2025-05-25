@@ -1,0 +1,8 @@
+[
+  { "url": "https://www.goodnewsnetwork.org/feed/",                   "category": "Human Kindness" },
+  { "url": "https://www.positive.news/feed/",                         "category": "Human Kindness" },
+  { "url": "https://www.sciencedaily.com/rss/health_medicine.xml",    "category": "Health" },
+  { "url": "https://www.sciencedaily.com/rss/technology.xml",         "category": "Innovation" },
+  { "url": "https://www.goodgoodgood.co/feed",                        "category": "Human Kindness" },
+  { "url": "https://www.earth.com/news/feed/",                        "category": "Environment" }
+]
