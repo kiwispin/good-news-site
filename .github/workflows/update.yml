@@ -11,37 +11,43 @@ on:
   workflow_dispatch:
 
 ###############################################################################
+# Permissions (allow this workflow to push commits back to the repo)
+###############################################################################
+permissions:
+  contents: write      # ← gives the built-in GITHUB_TOKEN write access
+
+###############################################################################
 # Main job
 ###############################################################################
 jobs:
   build:
     runs-on: ubuntu-latest
 
-    # Optional Netlify build-hook URL stored as a repo secret
+    # Optional Netlify build-hook URL
     env:
       NETLIFY_HOOK: ${{ secrets.NETLIFY_BUILD_HOOK }}
 
     steps:
-      # 1. Checkout repo code
+      # 1 Checkout repository code
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      # 2. Set up Node 18
+      # 2 Set up Node 18.x
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 18
           cache: 'npm'
 
-      # 3. Install dependencies (package.json drives versions)
+      # 3 Install dependencies
       - name: Install dependencies
         run: npm install
 
-      # 4. Run the feed fetcher to create today’s Markdown posts
+      # 4 Run the feed-fetch script
       - name: Fetch positive news
         run: node fetch-feeds.js
 
-      # 5. Commit new posts, if there were any
+      # 5 Commit new posts if any were created
       - name: Commit new posts (if any)
         run: |
           git config user.email "actions@github.com"
@@ -53,12 +59,12 @@ jobs:
             git commit -m "chore: daily good-news update"
           fi
 
-      # 6. Push changes back to GitHub
+      # 6 Push changes back to GitHub
       - name: Push changes
         if: success()
         run: git push
 
-      # 7. Trigger a Netlify rebuild (optional)
+      # 7 Trigger Netlify build (if hook URL is set)
       - name: Trigger Netlify build
         if: env.NETLIFY_HOOK != ''
         run: curl -s -X POST -d '{}' "$NETLIFY_HOOK"
