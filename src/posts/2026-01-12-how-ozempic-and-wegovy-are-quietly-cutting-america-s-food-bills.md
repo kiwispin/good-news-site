@@ -1,0 +1,8 @@
+---
+title: "How Ozempic and Wegovy are quietly cutting America’s food bills"
+date: 2026-01-12T06:24:46.000Z
+category: Health
+externalLink: "https://www.sciencedaily.com/releases/2026/01/260112001029.htm"
+image: ""
+excerpt: "Weight-loss drugs like Ozempic and Wegovy are changing how Americans spend money on food. A large Cornell study found households cut grocery spending by over 5% within six months, with even bigger drops at fast-food restaurants. Snack foods and sweets saw the steepest declines, while only a few categories like yogurt and fruit rose slightly. The effects linger for at…"
+---
