@@ -1,0 +1,8 @@
+---
+title: "Neanderthals may have used prehistoric glue as an ancient antibiotic"
+date: 2026-10-11T00:45:37.000Z
+category: Health
+externalLink: "https://www.sciencedaily.com/releases/2026/10/261008005256.htm"
+image: ""
+excerpt: "Neanderthals may have used a sticky substance made from birch bark to treat wounds thousands of years before antibiotics existed. Researchers recreated ancient birch tar production techniques and discovered that every sample could inhibit the growth of bacteria responsible for dangerous wound infections. Previously known mainly as a prehistoric glue, birch tar may have doubled as a surprisingly effective natural…"
+---
