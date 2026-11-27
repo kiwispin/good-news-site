@@ -1,0 +1,8 @@
+---
+title: "This dietary supplement may have an unexpected benefit for the brain"
+date: 2026-11-26T23:34:32.000Z
+category: Health
+externalLink: "https://www.sciencedaily.com/releases/2026/11/261125045311.htm"
+image: ""
+excerpt: "A naturally derived dietary supplement called urolithin A may help the brain get more oxygen and nutrients when it needs them most. In a randomized clinical trial involving 50 middle-aged adults with obesity, researchers found that taking the supplement daily for four weeks increased blood flow to the brain during a challenging memory task, particularly in a region involved in…"
+---
